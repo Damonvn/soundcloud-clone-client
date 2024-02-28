@@ -161,7 +161,7 @@ export default function AppHeader() {
                         >
                            <Link href={'/playlist'}>Playlist</Link>
                            <Link href={'/like'}>Likes</Link>
-                           <Link href={'track'}>Upload</Link>
+                           <Link href={'track/upload'}>Upload</Link>
                            <Tippy
                               visible={isVisibleTippy}
                               interactive={true}

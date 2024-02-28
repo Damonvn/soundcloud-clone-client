@@ -35,7 +35,7 @@ export default async function HomePage() {
 
    return (
       <Container>
-         <div style={{ paddingTop: '46px', marginBottom: '76px' }}>
+         <div style={{ paddingTop: '46px', marginBottom: '76px', minHeight: 'calc(100vh + 5px)' }}>
             <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                <div style={{ display: 'flex' }}>
                   <div style={{ width: '70%' }}>
