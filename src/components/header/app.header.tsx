@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Tippy from '@tippyjs/react';
+import { fetchDefaultImages } from '@/utils/api';
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -86,6 +87,8 @@ export default function AppHeader() {
          document.removeEventListener('click', handleClickOutside);
       };
    }, []);
+   //@ts-ignore
+   const avatarImgUrl = `url(${fetchDefaultImages(session?.user.type)})`;
    return (
       <Box sx={{ flexGrow: 1 }}>
          <AppBar position="static" sx={{ backgroundColor: '#333', position: 'fixed', zIndex: 10 }}>
@@ -159,7 +162,6 @@ export default function AppHeader() {
                               },
                            }}
                         >
-                           <Link href={'/playlist'}>Playlist</Link>
                            <Link href={'/like'}>Likes</Link>
                            <Link href={'track/upload'}>Upload</Link>
                            <Tippy
@@ -210,7 +212,7 @@ export default function AppHeader() {
                                        }}
                                     >
                                        <Link
-                                          href="/profile"
+                                          href={`/profile/${session?.user?._id}`}
                                           onClick={() => {
                                              setIsVisibleTippy(false);
                                           }}
@@ -249,19 +251,21 @@ export default function AppHeader() {
                               }
                            >
                               <div ref={avatarRef}>
-                                 <Avatar
+                                 <Box
                                     sx={{
-                                       height: '30px',
-                                       width: '30px',
-                                       fontSize: '13px',
+                                       height: '38px',
+                                       width: '38px',
                                        '&: hover': {
-                                          opacity: '1',
+                                          opacity: '0.9',
+                                          cursor: 'pointer',
                                        },
+                                       background: avatarImgUrl,
+                                       backgroundPosition: 'center',
+                                       backgroundSize: 'cover',
+                                       backgroundRepeat: 'no-repeat',
                                     }}
                                     onClick={() => setIsVisibleTippy((st) => !st)}
-                                 >
-                                    DA
-                                 </Avatar>
+                                 ></Box>
                               </div>
                            </Tippy>
                         </Box>

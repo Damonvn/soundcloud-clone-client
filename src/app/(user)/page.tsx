@@ -35,17 +35,17 @@ export default async function HomePage() {
 
    return (
       <Container>
-         <div style={{ paddingTop: '46px', marginBottom: '76px', minHeight: 'calc(100vh + 5px)' }}>
+         <div style={{ paddingTop: '46px', marginBottom: '26px', minHeight: 'calc(100vh + 5px)' }}>
             <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                <div style={{ display: 'flex' }}>
-                  <div style={{ width: '70%' }}>
+                  <div style={{ width: '85%' }}>
                      <MainSlider data={chills?.data ?? []} title={'Top Chill'} />
                      <Divider />
                      <MainSlider data={workouts?.data ?? []} title={'Top Workout'} />
                      <Divider />
                      <MainSlider data={party?.data ?? []} title={'Top Party'} />
                   </div>
-                  <div style={{ width: '30%' }}>
+                  <div style={{ width: '15%' }}>
                      <div
                         style={{
                            marginLeft: 20,

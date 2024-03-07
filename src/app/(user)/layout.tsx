@@ -10,7 +10,6 @@ export default function RootLayout(props: any) {
             <>
                <AppHeader />
                {children}
-               <AppFooter />
             </>
          </body>
       </html>

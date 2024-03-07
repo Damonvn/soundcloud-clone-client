@@ -10,7 +10,7 @@ import Button from '@mui/material/Button/Button';
 import { Box, Divider } from '@mui/material';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-
+import { TrackContext, useTrackContext } from '@/lib/track.wrapper';
 interface IProps {
    data: ITrackTop[];
    title: string;
@@ -20,6 +20,7 @@ const MainSlider = (props: IProps) => {
    const { data, title } = props;
    const refSlide = useRef(null);
    const [slideWidth, setSlideWidth] = useState();
+   const { currentTrack, setCurrentTrack } = useTrackContext() as ITrackContext;
 
    const NextArrow = (props: any) => {
       return (
@@ -100,7 +101,7 @@ const MainSlider = (props: IProps) => {
                            <div
                               style={{
                                  width: slideWidth ? slideWidth : '100%',
-                                 height: slideWidth ? slideWidth : 139,
+                                 height: slideWidth ? slideWidth : 173,
                                  background: `url(${process.env.NEXT_PUBLIC_BACKEND_URL}/images/${track.imgUrl})`,
                                  backgroundPosition: 'center',
                                  backgroundSize: 'cover',

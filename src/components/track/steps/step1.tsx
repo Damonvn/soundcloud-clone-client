@@ -55,7 +55,7 @@ const Step1 = (props: IProps) => {
             const formData = new FormData();
             formData.append('fileUpload', audio);
             try {
-               // Get some error with using sendRequestFile => use axios
+               // axios for showing percentCompleted
                const res = await axios.post('http://localhost:8000/api/v1/files/upload', formData, {
                   headers: {
                      Authorization: `Bearer ${session?.access_token}`,

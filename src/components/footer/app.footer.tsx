@@ -1,91 +1,118 @@
 'use client';
 import './app.footer.scss';
-import { useHasMounted } from '../../utils/customHook';
+import { useHasMounted } from '@/utils/customHook';
 import { AppBar, Box, Container } from '@mui/material';
 import { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
-const AppFooter = () => {
+interface IProps {
+   currentTrack: IShareTrack;
+   setCurrentTrack: (v: IShareTrack) => void;
+}
+const AppFooter = (props: IProps) => {
+   const { currentTrack } = props;
+   const { setCurrentTrack } = props;
    const playerRef = useRef(null);
    const hasMounted = useHasMounted();
    if (!hasMounted) return <></>;
-
+   //@ts-ignore
+   if (currentTrack?.isPlaying) {
+      //@ts-ignore
+      playerRef?.current?.audio?.current?.play();
+   } else {
+      //@ts-ignore
+      playerRef?.current?.audio?.current?.pause();
+   }
    return (
-      <Box>
-         <AppBar
-            position="fixed"
-            color="primary"
-            sx={{
-               top: 'auto',
-               bottom: 0,
-               backgroundColor: '#f2f2f2',
-               borderTop: '1px solid #cecece',
-               marginTop: '300spx',
-               '.rhap_container': {
-                  padding: '3px 15px',
-               },
-            }}
-         >
-            <Container
+      <>
+         <Box>
+            <AppBar
+               position="fixed"
+               color="primary"
                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '5px',
-                  paddingBottom: '5px',
+                  top: 'auto',
+                  bottom: 0,
+                  backgroundColor: '#f2f2f2',
+                  borderTop: '1px solid #cecece',
+                  marginTop: '300spx',
+                  '.rhap_container': {
+                     padding: '3px 15px',
+                  },
                }}
             >
-               <AudioPlayer
-                  className="app-footer-audioPlayer"
-                  ref={playerRef}
-                  style={{
-                     backgroundColor: '#f2f2f2',
-                     boxShadow: 'none',
-                     width: '80%',
-                     marginLeft: '-14px',
-                     marginRight: '50px',
-                  }}
-                  autoPlay={false}
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/30-sec-acoustic-heartfelt-bluegrass-southern-cooking-SBA-346744617-1704000176925.mp3`}
-                  volume={0.5}
-                  // other props here
-               />
-
-               <div
-                  style={{
-                     color: '#666',
-                     width: '20%',
-                     overflow: 'hidden',
+               <Container
+                  sx={{
                      display: 'flex',
-                     flexDirection: 'column',
-                     alignItems: 'start',
+                     alignItems: 'center',
+                     justifyContent: 'space-between',
+                     paddingTop: '5px',
+                     paddingBottom: '5px',
                   }}
                >
+                  <AudioPlayer
+                     className="app-footer-audioPlayer"
+                     ref={playerRef}
+                     style={{
+                        backgroundColor: '#f2f2f2',
+                        boxShadow: 'none',
+                        width: '80%',
+                        marginLeft: '-14px',
+                        marginRight: '50px',
+                     }}
+                     autoPlay
+                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/${currentTrack.trackUrl}`}
+                     onPlay={() =>
+                        setCurrentTrack({
+                           ...currentTrack,
+                           isPlaying: true,
+                        })
+                     }
+                     onPause={() => {
+                        setCurrentTrack({
+                           ...currentTrack,
+                           isPlaying: false,
+                        });
+                     }}
+                     volume={0.5}
+                     // other props here
+                  />
+
                   <div
                      style={{
-                        fontSize: '16px',
+                        color: '#666',
+                        width: '20%',
                         overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'start',
                      }}
                   >
-                     Song's name: hardcode
+                     <div
+                        style={{
+                           fontSize: '16px',
+                           overflow: 'hidden',
+                           textOverflow: 'ellipsis',
+                           whiteSpace: 'nowrap',
+                        }}
+                     >
+                        {currentTrack?.title}
+                     </div>
+                     <div
+                        style={{
+                           fontSize: '12px',
+                           overflow: 'hidden',
+                           textOverflow: 'ellipsis',
+                           whiteSpace: 'nowrap',
+                        }}
+                     >
+                        {currentTrack?.description}
+                     </div>
                   </div>
-                  <div
-                     style={{
-                        fontSize: '12px',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                     }}
-                  >
-                     Song's information
-                  </div>
-               </div>
-            </Container>
-         </AppBar>
-      </Box>
+               </Container>
+            </AppBar>
+         </Box>
+      </>
    );
 };
 
