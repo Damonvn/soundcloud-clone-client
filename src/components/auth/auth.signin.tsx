@@ -147,7 +147,11 @@ const AuthSignIn = (props: any) => {
                         endAdornment: (
                            <InputAdornment position="end">
                               <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                 {showPassword === false ? <VisibilityOff /> : <Visibility />}
+                                 {showPassword === false ? (
+                                    <VisibilityOff />
+                                 ) : (
+                                    <Visibility />
+                                 )}
                               </IconButton>
                            </InputAdornment>
                         ),
@@ -191,6 +195,9 @@ const AuthSignIn = (props: any) => {
                            cursor: 'pointer',
                            bgcolor: 'orange',
                         }}
+                        onClick={() => {
+                           signIn('google');
+                        }}
                      >
                         <GoogleIcon titleAccess="Login with Google" />
                      </Avatar>
@@ -203,7 +210,11 @@ const AuthSignIn = (props: any) => {
             autoHideDuration={5000}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
          >
-            <Alert severity="error" sx={{ width: '100%' }} onClose={() => setOpenMessage(false)}>
+            <Alert
+               severity="error"
+               sx={{ width: '100%' }}
+               onClose={() => setOpenMessage(false)}
+            >
                {resMessage}
             </Alert>
          </Snackbar>

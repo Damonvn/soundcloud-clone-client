@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { AuthOptions } from 'next-auth';
@@ -44,6 +45,18 @@ export const authOptions: AuthOptions = {
          style: {
             logo: '/github.svg',
             logoDark: '/github-dark.svg',
+            bg: '#fff',
+            bgDark: '#fff',
+            text: 'red',
+            textDark: '#000',
+         },
+      }),
+      GoogleProvider({
+         clientId: process.env.GOOGLE_ID!,
+         clientSecret: process.env.GOOGLE_SECRET!,
+         style: {
+            logo: '/google.svg',
+            logoDark: '/google-dark.svg',
             bg: '#fff',
             bgDark: '#fff',
             text: 'red',

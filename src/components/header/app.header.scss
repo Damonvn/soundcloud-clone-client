@@ -1,3 +1,10 @@
 .custom-height {
    min-height: 46px !important;
 }
+
+.header-avatar {
+   &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+   }
+}

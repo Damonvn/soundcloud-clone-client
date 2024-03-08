@@ -91,7 +91,10 @@ export default function AppHeader() {
    const avatarImgUrl = `url(${fetchDefaultImages(session?.user.type)})`;
    return (
       <Box sx={{ flexGrow: 1 }}>
-         <AppBar position="static" sx={{ backgroundColor: '#333', position: 'fixed', zIndex: 10 }}>
+         <AppBar
+            position="static"
+            sx={{ backgroundColor: '#333', position: 'fixed', zIndex: 10 }}
+         >
             <Container>
                <Toolbar
                   sx={{
@@ -141,6 +144,14 @@ export default function AppHeader() {
                         }}
                         placeholder="Search…"
                         inputProps={{ 'aria-label': 'search' }}
+                        onKeyDown={(e: any) => {
+                           // e.preventDefault();
+                           if (e.key === 'Enter') {
+                              if (e?.target?.value) {
+                                 router.push(`/search?q=${e?.target?.value}`);
+                              }
+                           }
+                        }}
                      />
                   </Search>
                   <Box sx={{ flexGrow: 1 }} />
@@ -250,23 +261,20 @@ export default function AppHeader() {
                                  </div>
                               }
                            >
-                              <div ref={avatarRef}>
-                                 <Box
-                                    sx={{
-                                       height: '38px',
-                                       width: '38px',
-                                       '&: hover': {
-                                          opacity: '0.9',
-                                          cursor: 'pointer',
-                                       },
-                                       background: avatarImgUrl,
-                                       backgroundPosition: 'center',
-                                       backgroundSize: 'cover',
-                                       backgroundRepeat: 'no-repeat',
-                                    }}
-                                    onClick={() => setIsVisibleTippy((st) => !st)}
-                                 ></Box>
-                              </div>
+                              <div
+                                 ref={avatarRef}
+                                 className="header-avatar"
+                                 style={{
+                                    height: '38px',
+                                    width: '38px',
+                                    borderRadius: '19px',
+                                    background: avatarImgUrl,
+                                    backgroundPosition: 'center',
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                 }}
+                                 onClick={() => setIsVisibleTippy((st) => !st)}
+                              ></div>
                            </Tippy>
                         </Box>
                      </>
