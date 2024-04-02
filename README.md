@@ -1,12 +1,7 @@
-### Next.js + MUI + TypeScript (Hỏi Dân IT)
+### Next.js + MUI - Node version 16.13.1
 
-Template này được sử dụng cho series React/Next.JS của tác giả Hỏi Dân IT (Eric)
+1. Clone project
+2. Install: npm i
+3. Start: npm run dev
 
-Các bước cần làm:
-
-1. Clone dự án
-2. Cài đặt các thư viện cần thiết: npm i
-3. Chạy dự án với câu lệnh: npm run dev
-
- 
-Truy cập:  http://localhost:3000/
+Access: http://localhost:3000

@@ -32,7 +32,7 @@ export const authOptions: AuthOptions = {
                },
             });
             if (res && res.data) {
-               return res.data as any;
+               return res.data as any; //  user of callbacks->jwt({ token, trigger, account, user }) = res.data
             } else {
                throw new Error(res?.message as string);
             }
@@ -85,6 +85,7 @@ export const authOptions: AuthOptions = {
                token.user = res.data.user;
             }
          }
+
          if (trigger === 'signIn' && account?.provider === 'credentials') {
             //@ts-ignore
             token.access_token = user.access_token;
@@ -95,6 +96,7 @@ export const authOptions: AuthOptions = {
          }
          return token;
       },
+
       session({ session, token, user }) {
          if (token) {
             session.access_token = token.access_token;

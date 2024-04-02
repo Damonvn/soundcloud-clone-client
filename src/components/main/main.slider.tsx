@@ -12,11 +12,11 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { TrackContext, useTrackContext } from '@/lib/track.wrapper';
 interface IProps {
-   data: ITrackTop[];
+   data: ITrackTop[] | [];
    title: string;
 }
 
-const MainSlider = (props: IProps) => {
+const MainSlider = (props: any) => {
    const { data, title } = props;
    const refSlide = useRef(null);
    const [slideWidth, setSlideWidth] = useState();

@@ -65,6 +65,8 @@ export default function AppHeader() {
    const tooltipRef = React.useRef(null);
    const avatarRef = React.useRef(null);
 
+   console.log('check session: ', session);
+
    const handleRedirectHome = () => {
       router.push('/');
    };
@@ -110,13 +112,14 @@ export default function AppHeader() {
                      sx={{
                         fontSize: '18px',
                         display: { xs: 'none', sm: 'block', cursor: 'pointer' },
+                        color: '#fe4b00',
                         '&: hover': {
                            opacity: '0.8',
                         },
                      }}
                      onClick={() => handleRedirectHome()}
                   >
-                     DamonIT SC
+                     YOUR MUSIC
                   </Typography>
                   <Search
                      className="app.header.search"

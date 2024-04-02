@@ -56,22 +56,26 @@ const Step1 = (props: IProps) => {
             formData.append('fileUpload', audio);
             try {
                // axios for showing percentCompleted
-               const res = await axios.post('http://localhost:8000/api/v1/files/upload', formData, {
-                  headers: {
-                     Authorization: `Bearer ${session?.access_token}`,
-                     target_type: 'tracks',
+               const res = await axios.post(
+                  'http://localhost:8000/api/v1/files/upload',
+                  formData,
+                  {
+                     headers: {
+                        Authorization: `Bearer ${session?.access_token}`,
+                        target_type: 'tracks',
+                     },
+                     onUploadProgress: (progressEvent) => {
+                        let percentCompleted = Math.floor(
+                           (progressEvent.loaded * 100) / progressEvent.total!,
+                        );
+                        props.setTrackUpload({
+                           ...trackUpload,
+                           fileName: audio.name,
+                           percent: percentCompleted,
+                        });
+                     },
                   },
-                  onUploadProgress: (progressEvent) => {
-                     let percentCompleted = Math.floor(
-                        (progressEvent.loaded * 100) / progressEvent.total!,
-                     );
-                     props.setTrackUpload({
-                        ...trackUpload,
-                        fileName: audio.name,
-                        percent: percentCompleted,
-                     });
-                  },
-               });
+               );
                props.setTrackUpload((prev: any) => ({
                   ...prev,
                   uploadedTrackName: res.data.data.fileName,
