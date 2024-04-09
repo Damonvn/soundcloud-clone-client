@@ -15,7 +15,7 @@ interface IProps {
    comments: ITrackComment[] | null;
 }
 
-const WaveTrack = (Props: IProps) => {
+const WaveTrack = (Props: any) => {
    const { track } = Props;
    const { comments } = Props;
    const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -46,36 +46,16 @@ const WaveTrack = (Props: IProps) => {
          // Define the waveform gradient
          gradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 1.35);
          gradient.addColorStop(0, '#656666'); // Top color
-         gradient.addColorStop(
-            (canvas.height * 0.7) / canvas.height,
-            '#656666',
-         ); // Top color
-         gradient.addColorStop(
-            (canvas.height * 0.7 + 1) / canvas.height,
-            '#ffffff',
-         ); // White line
-         gradient.addColorStop(
-            (canvas.height * 0.7 + 2) / canvas.height,
-            '#ffffff',
-         ); // White line
-         gradient.addColorStop(
-            (canvas.height * 0.7 + 3) / canvas.height,
-            '#B1B1B1',
-         ); // Bottom color
+         gradient.addColorStop((canvas.height * 0.7) / canvas.height, '#656666'); // Top color
+         gradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, '#ffffff'); // White line
+         gradient.addColorStop((canvas.height * 0.7 + 2) / canvas.height, '#ffffff'); // White line
+         gradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, '#B1B1B1'); // Bottom color
          gradient.addColorStop(1, '#B1B1B1'); // Bottom color
 
          // Define the progress gradient
-         progressGradient = ctx.createLinearGradient(
-            0,
-            0,
-            0,
-            canvas.height * 1.35,
-         );
+         progressGradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 1.35);
          progressGradient.addColorStop(0, '#EE772F'); // Top color
-         progressGradient.addColorStop(
-            (canvas.height * 0.7) / canvas.height,
-            '#EB4926',
-         ); // Top color
+         progressGradient.addColorStop((canvas.height * 0.7) / canvas.height, '#EB4926'); // Top color
          progressGradient.addColorStop(
             (canvas.height * 0.7 + 1) / canvas.height,
             '#ffffff',
@@ -196,14 +176,10 @@ const WaveTrack = (Props: IProps) => {
                            }}
                         >
                            {isPlaying && (
-                              <PauseIcon
-                                 sx={{ fontSize: 30, color: 'white' }}
-                              />
+                              <PauseIcon sx={{ fontSize: 30, color: 'white' }} />
                            )}
                            {!isPlaying && (
-                              <PlayArrowIcon
-                                 sx={{ fontSize: 30, color: 'white' }}
-                              />
+                              <PlayArrowIcon sx={{ fontSize: 30, color: 'white' }} />
                            )}
                         </div>
                      ) : (
@@ -268,11 +244,7 @@ const WaveTrack = (Props: IProps) => {
                      <div ref={durationRef} className="duration" id="duration">
                         0:00
                      </div>
-                     <div
-                        ref={hoverRef}
-                        className="hover-wave"
-                        id="hover"
-                     ></div>
+                     <div ref={hoverRef} className="hover-wave" id="hover"></div>
                      <div
                         className="overlay"
                         style={{
@@ -312,11 +284,7 @@ const WaveTrack = (Props: IProps) => {
                width: '100%',
             }}
          >
-            <CommentTrack
-               waveSurfer={waveSurfer}
-               track={track}
-               comments={comments}
-            />
+            <CommentTrack waveSurfer={waveSurfer} track={track} comments={comments} />
          </div>
       </Container>
    );

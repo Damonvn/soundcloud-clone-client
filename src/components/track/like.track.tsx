@@ -41,7 +41,6 @@ const LikeTrack = (props: IProps) => {
    const handleLikeTrack = async () => {
       const copyTrackLikes = trackLikes;
       const likeStatus = copyTrackLikes?.some((t) => t._id === track?._id);
-      console.log('Check likeStatus  handleLikeTrack: ', likeStatus);
       if (trackLikes) {
          const res = await sendRequest<IBackendRes<IModelPaginate<ITrackLike>>>({
             url: `http://localhost:8000/api/v1/likes`,
@@ -86,8 +85,6 @@ const LikeTrack = (props: IProps) => {
       //@ts-ignore
       setCountLike(track?.countLike);
    }, [session]);
-
-   console.log('check trackLikes: ', trackLikes);
 
    return (
       <Stack direction="row" justifyContent="space-between" alignItems="center">

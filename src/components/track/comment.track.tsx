@@ -87,7 +87,7 @@ const CommentTrack = (props: IProps) => {
    dayjs.extend(relativeTime);
    let dateNow = dayjs();
    //@ts-ignore
-   const uploaderImgUrl = `url(${fetchDefaultImages(track.uploader.role)})`;
+   const uploaderImgUrl = `url(${fetchDefaultImages(track.uploader.type)})`;
    return (
       <div style={{ marginTop: '15px' }}>
          <Box
@@ -129,7 +129,12 @@ const CommentTrack = (props: IProps) => {
                   }}
                ></div>
                <div
-                  style={{ fontSize: '15px', fontWeight: 700, textAlign: 'center', opacity: 0.5 }}
+                  style={{
+                     fontSize: '15px',
+                     fontWeight: 700,
+                     textAlign: 'center',
+                     opacity: 0.5,
+                  }}
                >
                   {track?.uploader.email}
                </div>

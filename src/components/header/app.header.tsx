@@ -65,8 +65,6 @@ export default function AppHeader() {
    const tooltipRef = React.useRef(null);
    const avatarRef = React.useRef(null);
 
-   console.log('check session: ', session);
-
    const handleRedirectHome = () => {
       router.push('/');
    };

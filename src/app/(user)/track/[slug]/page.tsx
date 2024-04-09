@@ -24,7 +24,6 @@ const DetailTrackPage = async (props: any) => {
          sort: '-createdAt',
       },
    });
-   const comments = resGetComments?.data?.result ?? null;
    return (
       <WaveTrack
          track={resGetTrack?.data ?? null}
