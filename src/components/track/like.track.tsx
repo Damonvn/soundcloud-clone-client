@@ -72,7 +72,6 @@ const LikeTrack = (props: IProps) => {
                createdAt: track?.createdAt,
                updatedAt: track?.updatedAt,
             };
-            console.log('check copyTrackLikes after push: ', copyTrackLikes);
             //@ts-ignore
             setTrackLikes((prev) => [...prev, addTrack]);
             setCountLike((prev) => prev + 1);

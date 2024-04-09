@@ -15,8 +15,6 @@ export default async function HomePage() {
       },
    });
 
-   console.log('check chills: ', chills);
-
    const workouts = await sendRequest<IBackendRes<ITrackTop[]>>({
       url: 'http://localhost:8000/api/v1/tracks/top',
       method: 'POST',
