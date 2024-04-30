@@ -111,13 +111,21 @@ export default function AppHeader() {
                         fontSize: '18px',
                         display: { xs: 'none', sm: 'block', cursor: 'pointer' },
                         color: '#fe4b00',
-                        '&: hover': {
-                           opacity: '0.8',
+                        '> a': {
+                           cursor: 'pointer',
+                           color: 'unset',
+                           textDecoration: 'unset',
+                           fontSize: '14px',
+                           '&: hover': {
+                              opacity: '0.85',
+                           },
                         },
                      }}
                      onClick={() => handleRedirectHome()}
                   >
-                     YOUR MUSIC
+                     <Link style={{}} href={'/'}>
+                        YOUR MUSIC
+                     </Link>
                   </Typography>
                   <Search
                      className="app.header.search"

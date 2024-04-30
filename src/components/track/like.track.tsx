@@ -1,3 +1,4 @@
+'use client';
 import { sendRequest } from '@/utils/api';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -31,6 +32,7 @@ const LikeTrack = (props: IProps) => {
                headers: { Authorization: `Bearer ${session?.access_token}` },
             },
          );
+         console.log('check res2: ', res2);
          if (res2?.data?.result) {
             //@ts-ignore
             setTrackLikes(res2?.data?.result);
@@ -127,7 +129,7 @@ const LikeTrack = (props: IProps) => {
                   <Chip
                      variant="outlined"
                      icon={<FavoriteBorderIcon fontSize="small" />}
-                     label={countLike.toString()}
+                     label={countLike?.toString()}
                      sx={{ border: 'none', fontSize: '11px' }}
                   ></Chip>
                </>
