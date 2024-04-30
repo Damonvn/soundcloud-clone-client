@@ -119,9 +119,9 @@ const AuthSignIn = (props: any) => {
                      margin="normal"
                      required
                      fullWidth
-                     label="Username: admin@gmail.com"
+                     label="Username: user@gmail.com"
                      name="username"
-                     placeholder="admin@gmail.com"
+                     placeholder="user@gmail.com"
                      autoFocus
                      error={isErrorUsername}
                      helperText={errorUsername}
